@@ -1,0 +1,32 @@
+name: ussd_session
+description: Send single-response USSD requests on Android with dual-SIM targeting via TelephonyManager.sendUssdRequest, typed errors, dialer fallback and amount parsing.
+version: 0.1.0
+homepage: https://abdeldjalilchougui.biz/
+repository: https://github.com/AbeldjalilChougui/ussd_session
+issue_tracker: https://github.com/AbeldjalilChougui/ussd_session/issues
+topics:
+  - ussd
+  - android
+  - telephony
+  - sim
+  - plugin
+
+environment:
+  sdk: ^3.5.0
+  flutter: ">=3.24.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_lints: ^5.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: dev.abdeldjalilchougui.ussd_session
+        pluginClass: UssdSessionPlugin
