@@ -171,8 +171,15 @@ read as one grouped number.
   cannot be recovered.
 - The plugin never reads or types into other apps' windows and does not use an
   AccessibilityService.
-- The Kotlin code compiles and its pure logic is unit tested, but this release has not yet been
-  checked on a physical device against live networks.
+- The Kotlin pure logic has JUnit tests. The example app has an emulator integration test
+  (`example/integration_test/`, run with `dart run tool/run_on_device.dart <applicationId>` from
+  `example/`). It checks the permission errors, invalid codes, `simCards()` against the
+  emulator SIM (`getprop`), `send` with and without a subscription id (timeout, then
+  `returnFailure` while that request is pending, `invalidSubscription`), and that `dial` opens
+  the dialer with `tel:*100%23` and the dialer shows `*100#`.
+- Not tested: a real network reply, dual-SIM devices and Android below 10.
+
+**Tested on:** Android Emulator, Pixel 10 image, API 37 (physical phone not tested).
 
 ## Data sources
 
