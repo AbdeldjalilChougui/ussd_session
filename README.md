@@ -159,7 +159,11 @@ read as one grouped number.
   only use that form if your carrier documents it.
 - `send` needs Android 8.0 (API 26). On older devices it throws `unsupported`; use `dial`.
 - Only one USSD request can run at a time on a device. Wait for each reply before sending the
-  next one (a concurrent request usually fails with `serviceUnavailable`).
+  next one: while a request is pending, Android fails a new one at once with `returnFailure`.
+- A request that times out is not cancelled (Android has no API for it). If the network never
+  answers, it stays pending in the phone process, even after the app exits, and every later
+  `send` fails with `returnFailure` until the radio turns off (airplane mode) or the device
+  restarts. The API 37 emulator's modem behaves this way: it accepts `*100#` and never replies.
 - Some devices and carriers ignore the subscription chosen with `createForSubscriptionId` and use
   the default SIM. This is a device limitation the plugin cannot detect.
 - On Android below 10, the platform gives the MNC as a number. A leading zero is restored for

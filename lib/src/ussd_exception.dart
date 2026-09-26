@@ -4,13 +4,15 @@ enum UssdErrorCode {
   /// `*#0-9+`, or does not start with `*`/`#` and end with `#`.
   invalidCode('INVALID_CODE'),
 
-  /// The network answered with a failure
-  /// (`TelephonyManager.USSD_RETURN_FAILURE`).
+  /// The network answered with a failure, or Android refused the request
+  /// at once because another USSD request is still pending on the device
+  /// (`TelephonyManager.USSD_RETURN_FAILURE`). The two cases cannot be told
+  /// apart.
   returnFailure('USSD_RETURN_FAILURE'),
 
   /// The USSD service is unavailable
   /// (`TelephonyManager.USSD_ERROR_SERVICE_UNAVAIL`), for example no
-  /// network, airplane mode, or another USSD session already running.
+  /// network or airplane mode.
   serviceUnavailable('SERVICE_UNAVAILABLE'),
 
   /// The app does not hold `android.permission.CALL_PHONE`.
@@ -26,6 +28,10 @@ enum UssdErrorCode {
   invalidSubscription('INVALID_SUBSCRIPTION'),
 
   /// No reply arrived before the timeout.
+  ///
+  /// Android has no API to cancel the request, so it can stay pending in
+  /// the phone process after the timeout. Until the network answers or the
+  /// radio turns off, every new request fails with [returnFailure].
   timeout('TIMEOUT'),
 
   /// Sending USSD is not supported: Android below 8.0 (API 26), a
