@@ -2,8 +2,8 @@ name: ussd_session
 description: Send single-response USSD requests on Android with dual-SIM targeting via TelephonyManager.sendUssdRequest, typed errors, dialer fallback and amount parsing.
 version: 0.1.0
 homepage: https://abdeldjalilchougui.biz/
-repository: https://github.com/AbeldjalilChougui/ussd_session
-issue_tracker: https://github.com/AbeldjalilChougui/ussd_session/issues
+repository: https://github.com/AbdeldjalilChougui/ussd_session
+issue_tracker: https://github.com/AbdeldjalilChougui/ussd_session/issues
 topics:
   - ussd
   - android
